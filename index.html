@@ -1,75 +1,253 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <meta name="google-site-verification" content="iMbZKZqNLOK-YbFNdN3rjwgOUoJQJHwEv8j3gt2q0M4" />
+  <!-- Essential -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfolio of Mehedi Hasan Sagor — student, CSE aspirant and aspiring web developer.">
+
+  <!-- Primary SEO -->
+  <title>Mehedi Hasan Sagor | CSE Aspirant & Web Developer</title>
+
+  <meta
+    name="description"
+    content="Official portfolio of Mehedi Hasan Sagor, a science student and CSE aspirant from Bangladesh exploring web development, programming and creative digital projects."
+  >
+
+  <meta
+    name="keywords"
+    content="Mehedi Hasan Sagor, Mehedi Hasan, Sagor, CSE aspirant, web developer, student, Bangladesh, portfolio, programmer, HTML, CSS, JavaScript, GitHub"
+  >
+
   <meta name="author" content="Mehedi Hasan Sagor">
+  <meta name="creator" content="Mehedi Hasan Sagor">
+  <meta name="publisher" content="Mehedi Hasan Sagor">
+
+  <!-- Search Engine Instructions -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://mehedi-hasan-sagor.github.io/">
+
+  <!-- Theme -->
   <meta name="theme-color" content="#0b1020">
-  <title>Mehedi Hasan Sagor | Portfolio</title>
+  <meta name="color-scheme" content="dark light">
+
+  <!-- Favicon -->
+  <link rel="icon" href="profile.jpg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="profile.jpg">
+
+  <!-- Open Graph / Facebook / WhatsApp / Messenger -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mehedi Hasan Sagor">
+  <meta property="og:title" content="Mehedi Hasan Sagor | CSE Aspirant & Web Developer">
+  <meta
+    property="og:description"
+    content="Official portfolio of Mehedi Hasan Sagor — a science student and CSE aspirant from Bangladesh exploring web development, programming and creative digital projects."
+  >
+  <meta property="og:url" content="https://mehedi-hasan-sagor.github.io/">
+  <meta property="og:image" content="https://mehedi-hasan-sagor.github.io/profile.jpg">
+  <meta property="og:image:alt" content="Mehedi Hasan Sagor">
+  <meta property="og:locale" content="en_US">
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mehedi Hasan Sagor | CSE Aspirant & Web Developer">
+  <meta
+    name="twitter:description"
+    content="Portfolio of Mehedi Hasan Sagor — student, CSE aspirant and aspiring web developer from Bangladesh."
+  >
+  <meta name="twitter:image" content="https://mehedi-hasan-sagor.github.io/profile.jpg">
+  <meta name="twitter:image:alt" content="Mehedi Hasan Sagor">
+
+  <!-- Performance -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="style.css">
+
+  <!--
+    Structured Data: Person
+    Helps search engines understand who this website represents.
+  -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://mehedi-hasan-sagor.github.io/#person",
+    "name": "Mehedi Hasan Sagor",
+    "url": "https://mehedi-hasan-sagor.github.io/",
+    "image": "https://mehedi-hasan-sagor.github.io/profile.jpg",
+    "jobTitle": "CSE Aspirant and Aspiring Web Developer",
+    "description": "Science student and CSE aspirant from Bangladesh interested in web development, programming and creative digital projects.",
+    "nationality": {
+      "@type": "Country",
+      "name": "Bangladesh"
+    },
+    "knowsAbout": [
+      "Web Development",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Programming",
+      "Git",
+      "GitHub",
+      "Computer Science"
+    ],
+    "sameAs": [
+      "https://github.com/mehedi-hasan-sagor"
+    ]
+  }
+  </script>
+
+  <!-- Structured Data: Website -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://mehedi-hasan-sagor.github.io/#website",
+    "name": "Mehedi Hasan Sagor | Portfolio",
+    "url": "https://mehedi-hasan-sagor.github.io/",
+    "description": "Official portfolio website of Mehedi Hasan Sagor.",
+    "publisher": {
+      "@id": "https://mehedi-hasan-sagor.github.io/#person"
+    },
+    "inLanguage": "en"
+  }
+  </script>
 </head>
+
 <body>
   <div class="bg-grid"></div>
 
   <header class="navbar">
-    <a class="logo" href="#home">MHS<span>.</span></a>
-    <button class="menu-btn" aria-label="Open menu">☰</button>
-    <nav>
+    <a class="logo" href="#home" aria-label="Mehedi Hasan Sagor - Home">
+      MHS<span>.</span>
+    </a>
+
+    <button
+      class="menu-btn"
+      type="button"
+      aria-label="Open navigation menu"
+      aria-expanded="false"
+    >
+      ☰
+    </button>
+
+    <nav aria-label="Main navigation">
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
     </nav>
-    <button class="theme-btn" aria-label="Toggle theme">◐</button>
+
+    <button
+      class="theme-btn"
+      type="button"
+      aria-label="Toggle theme"
+    >
+      ◐
+    </button>
   </header>
 
   <main>
-    <section id="home" class="hero section">
+
+    <!-- HERO -->
+    <section id="home" class="hero section" aria-labelledby="hero-title">
       <div class="hero-copy">
-        <div class="eyebrow"><span></span> Available for learning & collaboration</div>
-        <h1>Hi, I'm <strong>Mehedi Hasan Sagor</strong>.<br><em>I build things for the web.</em></h1>
+
+        <div class="eyebrow">
+          <span></span>
+          Available for learning & collaboration
+        </div>
+
+        <h1 id="hero-title">
+          Hi, I'm <strong>Mehedi Hasan Sagor</strong>.<br>
+          <em>I build things for the web.</em>
+        </h1>
+
         <p class="hero-text">
           A science student and CSE aspirant from Bangladesh, exploring web development,
           programming and creative digital projects.
         </p>
+
         <div class="hero-actions">
-          <a class="btn primary" href="#projects">View my work ↗</a>
-          <a class="btn secondary" href="#contact">Let's connect</a>
+          <a class="btn primary" href="#projects">
+            View my work ↗
+          </a>
+
+          <a class="btn secondary" href="#contact">
+            Let's connect
+          </a>
         </div>
+
         <div class="quick-links">
-          <a href="https://github.com/mehedi-hasan-sagor" target="_blank" rel="noopener">GitHub ↗</a>
+          <a
+            href="https://github.com/mehedi-hasan-sagor"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Mehedi Hasan Sagor on GitHub"
+          >
+            GitHub ↗
+          </a>
+
           <span>•</span>
           <span>Bangladesh 🇧🇩</span>
         </div>
       </div>
 
-      <div class="hero-card">
+      <div class="hero-card" aria-label="Profile">
         <div class="orbit orbit-1"></div>
         <div class="orbit orbit-2"></div>
-        <div class="avatar"><img src="profile.jpg" alt="Mehedi Hasan Sagor" /></div>
-        <div class="floating-card card-top">CSE Aspirant <span>⌁</span></div>
-        <div class="floating-card card-bottom">Learning • Building • Growing</div>
+
+        <div class="avatar">
+          <img
+            src="profile.jpg"
+            alt="Portrait of Mehedi Hasan Sagor, CSE aspirant and aspiring web developer"
+            width="400"
+            height="400"
+            fetchpriority="high"
+          >
+        </div>
+
+        <div class="floating-card card-top">
+          CSE Aspirant <span>⌁</span>
+        </div>
+
+        <div class="floating-card card-bottom">
+          Learning • Building • Growing
+        </div>
       </div>
     </section>
 
-    <section id="about" class="section narrow">
+    <!-- ABOUT -->
+    <section id="about" class="section narrow" aria-labelledby="about-title">
       <div class="section-label">01 / ABOUT</div>
+
       <div class="two-col">
         <div>
-          <h2>Curious mind.<br><span>Builder mindset.</span></h2>
+          <h2 id="about-title">
+            Curious mind.<br>
+            <span>Builder mindset.</span>
+          </h2>
         </div>
+
         <div class="about-text">
           <p>
             I'm Mehedi Hasan Sagor, a student from Bangladesh with a strong interest in
             Computer Science & Engineering. I enjoy turning ideas into websites and
             experimenting with technology.
           </p>
+
           <p>
             Right now, I'm focused on strengthening my programming fundamentals,
             learning modern web technologies and building projects that I can be proud of.
@@ -78,81 +256,220 @@
       </div>
     </section>
 
-    <section id="skills" class="section">
+    <!-- SKILLS -->
+    <section id="skills" class="section" aria-labelledby="skills-title">
       <div class="section-label">02 / SKILLS</div>
-      <h2 class="section-title">What I'm learning</h2>
+
+      <h2 id="skills-title" class="section-title">
+        What I'm learning
+      </h2>
+
       <div class="skill-grid">
-        <article class="skill"><div class="icon">⌘</div><h3>HTML & CSS</h3><p>Responsive layouts, clean UI and modern styling.</p></article>
-        <article class="skill"><div class="icon">JS</div><h3>JavaScript</h3><p>Interactive interfaces and practical web functionality.</p></article>
-        <article class="skill"><div class="icon">&lt;/&gt;</div><h3>Programming</h3><p>Building logic and improving problem-solving fundamentals.</p></article>
-        <article class="skill"><div class="icon">Git</div><h3>Git & GitHub</h3><p>Version control, repositories and project documentation.</p></article>
+
+        <article class="skill">
+          <div class="icon" aria-hidden="true">⌘</div>
+          <h3>HTML & CSS</h3>
+          <p>
+            Responsive layouts, clean UI and modern styling.
+          </p>
+        </article>
+
+        <article class="skill">
+          <div class="icon" aria-hidden="true">JS</div>
+          <h3>JavaScript</h3>
+          <p>
+            Interactive interfaces and practical web functionality.
+          </p>
+        </article>
+
+        <article class="skill">
+          <div class="icon" aria-hidden="true">&lt;/&gt;</div>
+          <h3>Programming</h3>
+          <p>
+            Building logic and improving problem-solving fundamentals.
+          </p>
+        </article>
+
+        <article class="skill">
+          <div class="icon" aria-hidden="true">Git</div>
+          <h3>Git & GitHub</h3>
+          <p>
+            Version control, repositories and project documentation.
+          </p>
+        </article>
+
       </div>
     </section>
 
-    <section id="projects" class="section">
+    <!-- PROJECTS -->
+    <section id="projects" class="section" aria-labelledby="projects-title">
       <div class="section-label">03 / PROJECTS</div>
+
       <div class="projects-head">
-        <h2 class="section-title">Selected work</h2>
-        <span class="muted">More projects coming soon.</span>
+        <h2 id="projects-title" class="section-title">
+          Selected work
+        </h2>
+
+        <span class="muted">
+          More projects coming soon.
+        </span>
       </div>
 
       <div class="project-grid">
+
+        <!-- Project 1 -->
         <article class="project featured">
           <div class="project-number">01</div>
+
           <div class="project-content">
             <span class="tag">Web Development</span>
-            <h3>International Talent Care Academy</h3>
-            <p>A school website concept with student-focused pages, login/dashboard ideas and a responsive interface.</p>
+
+            <h3>
+              International Talent Care Academy
+            </h3>
+
+            <p>
+              A school website concept with student-focused pages,
+              login/dashboard ideas and a responsive interface.
+            </p>
+
             <div class="project-links">
-              <a href="#" onclick="return noLink(event)">Live preview ↗</a>
-              <a href="https://github.com/mehedi-hasan-sagor" target="_blank" rel="noopener">GitHub ↗</a>
+              <a
+                href="#"
+                onclick="return noLink(event)"
+                aria-label="International Talent Care Academy live preview coming soon"
+              >
+                Live preview ↗
+              </a>
+
+              <a
+                href="https://github.com/mehedi-hasan-sagor"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                GitHub ↗
+              </a>
             </div>
           </div>
         </article>
 
+        <!-- Project 2 -->
         <article class="project">
           <div class="project-number">02</div>
+
           <div class="project-content">
             <span class="tag">Portfolio</span>
-            <h3>Personal Portfolio</h3>
-            <p>This responsive portfolio website — designed to grow alongside my skills and projects.</p>
-            <div class="project-links"><a href="#home">You're here ↗</a></div>
+
+            <h3>
+              Personal Portfolio
+            </h3>
+
+            <p>
+              This responsive portfolio website — designed to grow
+              alongside my skills and projects.
+            </p>
+
+            <div class="project-links">
+              <a href="#home">
+                You're here ↗
+              </a>
+            </div>
           </div>
         </article>
 
+        <!-- Project 3 -->
         <article class="project">
           <div class="project-number">03</div>
+
           <div class="project-content">
             <span class="tag">Coming Soon</span>
-            <h3>Next Project</h3>
-            <p>A new project is in the works. Check back soon for the next build.</p>
-            <div class="project-links"><a href="https://github.com/mehedi-hasan-sagor" target="_blank" rel="noopener">Follow on GitHub ↗</a></div>
+
+            <h3>
+              Next Project
+            </h3>
+
+            <p>
+              A new project is in the works. Check back soon for the next build.
+            </p>
+
+            <div class="project-links">
+              <a
+                href="https://github.com/mehedi-hasan-sagor"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Follow on GitHub ↗
+              </a>
+            </div>
           </div>
         </article>
+
       </div>
     </section>
 
-    <section id="contact" class="section contact">
+    <!-- CONTACT -->
+    <section
+      id="contact"
+      class="section contact"
+      aria-labelledby="contact-title"
+    >
       <div class="section-label">04 / CONTACT</div>
+
       <div class="contact-box">
         <div>
           <span class="tag">Have an idea?</span>
-          <h2>Let's build something<br><span>interesting.</span></h2>
+
+          <h2 id="contact-title">
+            Let's build something<br>
+            <span>interesting.</span>
+          </h2>
         </div>
+
         <div class="contact-actions">
-          <a class="btn primary" href="mailto:your-email@example.com">Email me ↗</a>
-          <a class="social" href="https://github.com/mehedi-hasan-sagor" target="_blank" rel="noopener">GitHub</a>
+
+          <!-- Replace this email with your real email -->
+          <a
+            class="btn primary"
+            href="mailto:your-email@example.com"
+            aria-label="Email Mehedi Hasan Sagor"
+          >
+            Email me ↗
+          </a>
+
+          <a
+            class="social"
+            href="https://github.com/mehedi-hasan-sagor"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Mehedi Hasan Sagor GitHub profile"
+          >
+            GitHub
+          </a>
+
         </div>
       </div>
-      <p class="edit-note">Tip: replace <b>your-email@example.com</b> in index.html with your real email.</p>
+
+      <p class="edit-note">
+        Tip: replace <b>your-email@example.com</b> in index.html with your real email.
+      </p>
     </section>
+
   </main>
 
+  <!-- FOOTER -->
   <footer>
-    <span>© <span id="year"></span> Mehedi Hasan Sagor</span>
-    <span>Designed & built with curiosity.</span>
+    <span>
+      © <span id="year"></span> Mehedi Hasan Sagor
+    </span>
+
+    <span>
+      Designed & built with curiosity.
+    </span>
   </footer>
 
+  <!-- JavaScript -->
   <script src="script.js"></script>
+
 </body>
 </html>
+```
