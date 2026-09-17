@@ -1,14 +1,19 @@
-/* =========================================
-   YEAR
-========================================= */
+/* ================= YEAR ================= */
 
 document.getElementById("year").textContent =
   new Date().getFullYear();
 
 
-/* =========================================
-   THEME TOGGLE
-========================================= */
+/* ================= PRELOADER ================= */
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("preloader").classList.add("hide");
+  }, 900);
+});
+
+
+/* ================= THEME ================= */
 
 const themeBtn = document.querySelector(".theme-btn");
 
@@ -16,133 +21,136 @@ themeBtn.addEventListener("click", () => {
 
   document.body.classList.toggle("light");
 
-  const isLight =
-    document.body.classList.contains("light");
-
   themeBtn.textContent =
-    isLight ? "☀" : "◐";
+    document.body.classList.contains("light")
+      ? "☀"
+      : "◐";
 
 });
 
 
-/* =========================================
-   MOBILE MENU
-========================================= */
+/* ================= MOBILE MENU ================= */
 
 const menuBtn = document.querySelector(".menu-btn");
 const nav = document.querySelector("nav");
 
 menuBtn.addEventListener("click", () => {
-
-  const isOpen =
-    nav.classList.toggle("mobile-open");
-
-  menuBtn.setAttribute(
-    "aria-expanded",
-    isOpen ? "true" : "false"
-  );
+  nav.classList.toggle("open");
 
   menuBtn.textContent =
-    isOpen ? "✕" : "☰";
-
+    nav.classList.contains("open")
+      ? "×"
+      : "☰";
 });
 
 
-/* =========================================
-   CLOSE MOBILE MENU
-========================================= */
-
-nav.querySelectorAll("a").forEach(link => {
-
+document.querySelectorAll("nav a").forEach(link => {
   link.addEventListener("click", () => {
-
-    nav.classList.remove("mobile-open");
-
-    menuBtn.setAttribute(
-      "aria-expanded",
-      "false"
-    );
-
+    nav.classList.remove("open");
     menuBtn.textContent = "☰";
-
   });
-
 });
 
 
-/* =========================================
-   NAVBAR SCROLL EFFECT
-========================================= */
+/* ================= TYPING EFFECT ================= */
 
-const navbar = document.querySelector(".navbar");
+const typingElement = document.getElementById("typing");
 
-window.addEventListener("scroll", () => {
-
-  if(window.scrollY > 30){
-    navbar.classList.add("scrolled");
-  }else{
-    navbar.classList.remove("scrolled");
-  }
-
-}, { passive:true });
-
-
-/* =========================================
-   SCROLL REVEAL
-========================================= */
-
-const revealElements = [
-
-  ...document.querySelectorAll(
-    ".section-label"
-  ),
-
-  ...document.querySelectorAll(
-    ".two-col > div"
-  ),
-
-  ...document.querySelectorAll(
-    ".skill"
-  ),
-
-  ...document.querySelectorAll(
-    ".project"
-  ),
-
-  ...document.querySelectorAll(
-    ".contact-box"
-  )
-
+const words = [
+  "CSE Aspirant",
+  "Aspiring Web Developer",
+  "Creative Learner",
+  "Future Programmer"
 ];
 
-revealElements.forEach((element, index) => {
+let wordIndex = 0;
+let charIndex = 0;
+let deleting = false;
 
-  element.classList.add("reveal");
+function typeEffect(){
 
-  if(
-    element.classList.contains("skill") ||
-    element.classList.contains("project")
-  ){
+  const current = words[wordIndex];
 
-    element.style.transitionDelay =
-      `${(index % 4) * 80}ms`;
+  if(!deleting){
 
+    typingElement.textContent =
+      current.substring(0, charIndex + 1);
+
+    charIndex++;
+
+    if(charIndex === current.length){
+
+      deleting = true;
+
+      setTimeout(typeEffect, 1500);
+      return;
+    }
+
+  }else{
+
+    typingElement.textContent =
+      current.substring(0, charIndex - 1);
+
+    charIndex--;
+
+    if(charIndex === 0){
+
+      deleting = false;
+      wordIndex =
+        (wordIndex + 1) % words.length;
+    }
   }
 
-});
+  setTimeout(
+    typeEffect,
+    deleting ? 45 : 85
+  );
+}
 
+typeEffect();
+
+
+/* ================= SCROLL PROGRESS ================= */
+
+function updateProgress(){
+
+  const scrollTop =
+    window.scrollY;
+
+  const height =
+    document.documentElement.scrollHeight -
+    window.innerHeight;
+
+  const progress =
+    height > 0
+      ? (scrollTop / height) * 100
+      : 0;
+
+  document.getElementById(
+    "scroll-progress"
+  ).style.width = progress + "%";
+}
+
+window.addEventListener(
+  "scroll",
+  updateProgress,
+  {passive:true}
+);
+
+
+/* ================= REVEAL ================= */
 
 const revealObserver =
   new IntersectionObserver(
-    (entries, observer) => {
+    entries => {
 
       entries.forEach(entry => {
 
         if(entry.isIntersecting){
 
-          entry.target.classList.add("show");
+          entry.target.classList.add("visible");
 
-          observer.unobserve(
+          revealObserver.unobserve(
             entry.target
           );
 
@@ -152,29 +160,20 @@ const revealObserver =
 
     },
     {
-      threshold:.12,
-      rootMargin:"0px 0px -50px 0px"
+      threshold:.12
     }
   );
 
 
-revealElements.forEach(element => {
-  revealObserver.observe(element);
-});
+document.querySelectorAll(".reveal")
+  .forEach(element =>
+    revealObserver.observe(element)
+  );
 
 
-/* =========================================
-   ACTIVE NAVIGATION
-========================================= */
+/* ================= SKILL BARS ================= */
 
-const sections =
-  document.querySelectorAll("main section");
-
-const navLinks =
-  document.querySelectorAll("nav a");
-
-
-const activeObserver =
+const skillObserver =
   new IntersectionObserver(
     entries => {
 
@@ -182,19 +181,19 @@ const activeObserver =
 
         if(entry.isIntersecting){
 
-          navLinks.forEach(link => {
+          const bar =
+            entry.target.querySelector(
+              ".skill-bar span"
+            );
 
-            link.classList.remove("active");
+          if(bar){
+            bar.style.width =
+              bar.dataset.width;
+          }
 
-            if(
-              link.getAttribute("href") ===
-              "#" + entry.target.id
-            ){
-              link.classList.add("active");
-            }
-
-          });
-
+          skillObserver.unobserve(
+            entry.target
+          );
         }
 
       });
@@ -206,196 +205,55 @@ const activeObserver =
   );
 
 
-sections.forEach(section => {
-  activeObserver.observe(section);
-});
-
-
-/* =========================================
-   TYPING EFFECT
-========================================= */
-
-const titleElement =
-  document.querySelector("#hero-title em");
-
-if(titleElement){
-
-  const originalText =
-    titleElement.textContent.trim();
-
-  const phrases = [
-    "CSE Aspirant & Web Developer",
-    "Future Computer Scientist",
-    "Creative Web Builder",
-    "Learning • Building • Growing"
-  ];
-
-  let phraseIndex = 0;
-  let charIndex = 0;
-  let deleting = false;
-
-  titleElement.textContent = "";
-
-  function typeEffect(){
-
-    const currentPhrase =
-      phrases[phraseIndex];
-
-    if(!deleting){
-
-      charIndex++;
-
-      titleElement.textContent =
-        currentPhrase.slice(0,charIndex);
-
-      if(charIndex === currentPhrase.length){
-
-        deleting = true;
-
-        setTimeout(
-          typeEffect,
-          1800
-        );
-
-        return;
-      }
-
-    }else{
-
-      charIndex--;
-
-      titleElement.textContent =
-        currentPhrase.slice(0,charIndex);
-
-      if(charIndex === 0){
-
-        deleting = false;
-
-        phraseIndex =
-          (phraseIndex + 1) %
-          phrases.length;
-
-      }
-
-    }
-
-    setTimeout(
-      typeEffect,
-      deleting ? 45 : 75
-    );
-
-  }
-
-  setTimeout(
-    typeEffect,
-    1100
-  );
-
-}
-
-
-/* =========================================
-   CUSTOM CURSOR
-   DESKTOP ONLY
-========================================= */
-
-const canUseCursor =
-  window.matchMedia(
-    "(pointer:fine)"
-  ).matches;
-
-if(canUseCursor){
-
-  const dot =
-    document.createElement("div");
-
-  const ring =
-    document.createElement("div");
-
-  dot.className = "cursor-dot";
-  ring.className = "cursor-ring";
-
-  document.body.appendChild(dot);
-  document.body.appendChild(ring);
-
-  dot.style.display = "block";
-  ring.style.display = "block";
-
-  let mouseX = 0;
-  let mouseY = 0;
-
-  let ringX = 0;
-  let ringY = 0;
-
-  window.addEventListener(
-    "mousemove",
-    event => {
-
-      mouseX = event.clientX;
-      mouseY = event.clientY;
-
-      dot.style.left =
-        `${mouseX}px`;
-
-      dot.style.top =
-        `${mouseY}px`;
-
-    },
-    { passive:true }
+document.querySelectorAll(".skill")
+  .forEach(skill =>
+    skillObserver.observe(skill)
   );
 
 
-  function animateCursor(){
+/* ================= PARTICLES ================= */
 
-    ringX +=
-      (mouseX - ringX) * .15;
+const particleContainer =
+  document.getElementById("particles");
 
-    ringY +=
-      (mouseY - ringY) * .15;
+for(let i = 0; i < 55; i++){
 
-    ring.style.left =
-      `${ringX}px`;
+  const particle =
+    document.createElement("span");
 
-    ring.style.top =
-      `${ringY}px`;
+  particle.className = "particle";
 
-    requestAnimationFrame(
-      animateCursor
-    );
+  particle.style.left =
+    Math.random() * 100 + "%";
 
-  }
+  particle.style.animationDuration =
+    (Math.random() * 15 + 10) + "s";
 
-  animateCursor();
+  particle.style.animationDelay =
+    (Math.random() * -20) + "s";
 
+  particle.style.opacity =
+    Math.random() * .7;
 
-  document
-    .querySelectorAll(
-      "a, button, .skill, .project"
-    )
-    .forEach(element => {
+  const size =
+    Math.random() * 3 + 1;
 
-      element.addEventListener(
-        "mouseenter",
-        () => {
-          ring.classList.add("hover");
-        }
-      );
+  particle.style.width =
+    size + "px";
 
-      element.addEventListener(
-        "mouseleave",
-        () => {
-          ring.classList.remove("hover");
-        }
-      );
+  particle.style.height =
+    size + "px";
 
-    });
-
+  particleContainer.appendChild(
+    particle
+  );
 }
 
 
-/* =========================================
-   PROJECT CARD TILT
-========================================= */
+/* ================= CURSOR GLOW ================= */
+
+const cursor =
+  document.querySelector(".cursor-glow");
 
 if(
   window.matchMedia(
@@ -403,47 +261,64 @@ if(
   ).matches
 ){
 
-  document
-    .querySelectorAll(
-      ".project, .skill"
-    )
-    .forEach(card => {
+  window.addEventListener(
+    "mousemove",
+    e => {
 
-      card.addEventListener(
-        "mousemove",
-        event => {
-
-          const rect =
-            card.getBoundingClientRect();
-
-          const x =
-            event.clientX - rect.left;
-
-          const y =
-            event.clientY - rect.top;
-
-          const rotateX =
-            ((y / rect.height) - .5) * -5;
-
-          const rotateY =
-            ((x / rect.width) - .5) * 5;
-
-          card.style.transform =
-            `perspective(800px)
-             translateY(-8px)
-             rotateX(${rotateX}deg)
-             rotateY(${rotateY}deg)`;
-
+      cursor.animate(
+        {
+          left: e.clientX + "px",
+          top: e.clientY + "px"
+        },
+        {
+          duration:350,
+          fill:"forwards"
         }
       );
 
+    }
+  );
 
-      card.addEventListener(
+}
+
+
+/* ================= MAGNETIC BUTTONS ================= */
+
+if(
+  window.matchMedia(
+    "(pointer:fine)"
+  ).matches
+){
+
+  document.querySelectorAll(".magnetic")
+    .forEach(button => {
+
+      button.addEventListener(
+        "mousemove",
+        e => {
+
+          const rect =
+            button.getBoundingClientRect();
+
+          const x =
+            e.clientX -
+            rect.left -
+            rect.width / 2;
+
+          const y =
+            e.clientY -
+            rect.top -
+            rect.height / 2;
+
+          button.style.transform =
+            `translate(${x * .12}px, ${y * .12}px)`;
+        }
+      );
+
+      button.addEventListener(
         "mouseleave",
         () => {
-
-          card.style.transform = "";
-
+          button.style.transform = "";
         }
       );
 
@@ -452,96 +327,59 @@ if(
 }
 
 
-/* =========================================
-   BUTTON RIPPLE
-========================================= */
+/* ================= PROJECT TILT ================= */
 
-document
-  .querySelectorAll(".btn")
-  .forEach(button => {
+if(
+  window.matchMedia(
+    "(pointer:fine)"
+  ).matches
+){
 
-    button.addEventListener(
-      "click",
-      function(event){
+  document.querySelectorAll(".project")
+    .forEach(card => {
 
-        const ripple =
-          document.createElement("span");
+      card.addEventListener(
+        "mousemove",
+        e => {
 
-        const rect =
-          this.getBoundingClientRect();
+          const rect =
+            card.getBoundingClientRect();
 
-        const size =
-          Math.max(
-            rect.width,
-            rect.height
-          );
+          const x =
+            (e.clientX - rect.left)
+            / rect.width;
 
-        ripple.style.position =
-          "absolute";
+          const y =
+            (e.clientY - rect.top)
+            / rect.height;
 
-        ripple.style.width =
-          `${size}px`;
+          const rotateX =
+            (0.5 - y) * 4;
 
-        ripple.style.height =
-          `${size}px`;
+          const rotateY =
+            (x - 0.5) * 4;
 
-        ripple.style.left =
-          `${event.clientX - rect.left - size/2}px`;
+          card.style.transform =
+            `translateY(-10px)
+             perspective(900px)
+             rotateX(${rotateX}deg)
+             rotateY(${rotateY}deg)`;
+        }
+      );
 
-        ripple.style.top =
-          `${event.clientY - rect.top - size/2}px`;
+      card.addEventListener(
+        "mouseleave",
+        () => {
+          card.style.transform = "";
+        }
+      );
 
-        ripple.style.borderRadius =
-          "50%";
+    });
 
-        ripple.style.background =
-          "rgba(124,108,255,.25)";
-
-        ripple.style.transform =
-          "scale(0)";
-
-        ripple.style.pointerEvents =
-          "none";
-
-        ripple.style.animation =
-          "ripple .6s ease-out";
-
-        this.appendChild(ripple);
-
-        setTimeout(() => {
-          ripple.remove();
-        },600);
-
-      }
-    );
-
-  });
-
-
-/* =========================================
-   RIPPLE ANIMATION
-========================================= */
-
-const rippleStyle =
-  document.createElement("style");
-
-rippleStyle.textContent = `
-@keyframes ripple{
-  to{
-    transform:scale(2);
-    opacity:0;
-  }
 }
-`;
-
-document.head.appendChild(
-  rippleStyle
-);
 
 
-/* =========================================
-   NO LINK
-========================================= */
+/* ================= NO LINK ================= */
 
 function noLink(event){
 
