@@ -6,11 +6,7 @@ document.getElementById("year").textContent =
 
 /* ================= PRELOADER ================= */
 
-window.addEventListener("load", () => {
-  setTimeout(() => {
-    document.getElementById("preloader").classList.add("hide");
-  }, 900);
-});
+
 
 
 /* ================= THEME ================= */
