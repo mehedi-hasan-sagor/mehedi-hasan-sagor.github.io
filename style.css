@@ -10,6 +10,77 @@
   --pink:#ff4ecd;
   --shadow:0 30px 100px rgba(0,0,0,.45);
 }
+/* FIX PRELOADER */
+#preloader{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:#05060d;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  animation:preloaderHide 1s ease 1.8s forwards;
+  pointer-events:none;
+}
+
+#preloader .loader-logo{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:42px;
+  font-weight:700;
+  color:white;
+}
+
+#preloader .loader-logo span{
+  color:#7c6cff;
+}
+
+#preloader .loader-line{
+  width:180px;
+  height:2px;
+  background:#20243a;
+  margin:22px 0 12px;
+  overflow:hidden;
+}
+
+#preloader .loader-line span{
+  display:block;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg,#7c6cff,#19e6c0);
+  animation:loaderMove 1.5s ease;
+}
+
+#preloader small{
+  color:#69718a;
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+@keyframes loaderMove{
+  from{
+    transform:translateX(-100%);
+  }
+  to{
+    transform:translateX(0);
+  }
+}
+
+@keyframes preloaderHide{
+  0%{
+    opacity:1;
+    visibility:visible;
+  }
+
+  80%{
+    opacity:0;
+  }
+
+  100%{
+    opacity:0;
+    visibility:hidden;
+  }
+}
 
 *{
   box-sizing:border-box;
